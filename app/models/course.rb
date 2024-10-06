@@ -9,5 +9,6 @@ class Course < ApplicationRecord
   has_many :students
   has_one :chat
   has_many :materials
+  has_many :tests
 
 end
