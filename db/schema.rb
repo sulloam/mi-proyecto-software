@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_06_011610) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_06_013206) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_06_011610) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_materials_on_course_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "info"
+    t.bigint "chat_id", null: false
+    t.bigint "student_id", null: false
+    t.bigint "professor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["professor_id"], name: "index_messages_on_professor_id"
+    t.index ["student_id"], name: "index_messages_on_student_id"
   end
 
   create_table "professors", force: :cascade do |t|
@@ -104,6 +116,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_06_011610) do
 
   add_foreign_key "chats", "courses"
   add_foreign_key "materials", "courses"
+  add_foreign_key "messages", "chats"
+  add_foreign_key "messages", "professors"
+  add_foreign_key "messages", "students"
   add_foreign_key "professors", "courses"
   add_foreign_key "professors", "users"
   add_foreign_key "questions", "tests"
