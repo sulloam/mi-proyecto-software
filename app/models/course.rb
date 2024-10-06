@@ -10,5 +10,6 @@ class Course < ApplicationRecord
   has_one :chat
   has_many :materials
   has_many :tests
+  has_many :course_reviews
 
 end
