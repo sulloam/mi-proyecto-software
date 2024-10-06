@@ -1,5 +1,6 @@
-class Message < ApplicationRecord
+# frozen_string_literal: true
 
+class Message < ApplicationRecord
   validates :info, presence: true
 
   belongs_to :chat

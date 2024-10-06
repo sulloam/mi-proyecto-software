@@ -1,5 +1,6 @@
-class CourseReview < ApplicationRecord
+# frozen_string_literal: true
 
+class CourseReview < ApplicationRecord
   validates :score, presence: true
   validates :comment, presence: true
 

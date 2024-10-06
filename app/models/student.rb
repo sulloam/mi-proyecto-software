@@ -1,5 +1,6 @@
-class Student < ApplicationRecord
+# frozen_string_literal: true
 
+class Student < ApplicationRecord
   validates :finished, presence: true
 
   belongs_to :course

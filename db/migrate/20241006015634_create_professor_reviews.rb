@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateProfessorReviews < ActiveRecord::Migration[7.1]
   def change
     create_table :professor_reviews do |t|
