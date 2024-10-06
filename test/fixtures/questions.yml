@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  statement: MyText
+  score: 1.5
+  obtained_score: 1.5
+  answer: MyText
+  test: one
+
+two:
+  statement: MyText
+  score: 1.5
+  obtained_score: 1.5
+  answer: MyText
+  test: two
