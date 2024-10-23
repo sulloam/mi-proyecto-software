@@ -1,0 +1,42 @@
+<div class="container">
+  <h1><%= @course.title %></h1>
+  <p><%= @course.description %></p>
+  <p><strong>Fecha de inicio:</strong> <%= @course.start_date %></p>
+  <p><strong>Fecha de término:</strong> <%= @course.end_date %></p>
+  <p><strong>Vacantes disponibles:</strong> <%= @course.available_slots %> de <%= @course.total_slots %></p>
+
+  <hr>
+
+  <h2>Materiales del Curso</h2>
+  <% if @materials.any? %>
+    <% @materials.each do |material| %>
+      <h3><%= material.title %></h3>
+      <p><%= material.content %></p>
+    <% end %>
+  <% else %>
+    <p>No hay materiales disponibles para este curso.</p>
+  <% end %>
+
+  <hr>
+
+  <h2>Pruebas del Curso</h2>
+  <% if @tests.any? %>
+    <% @tests.each do |test| %>
+      <h3><%= test.title %></h3>
+      <p><%= test.content %></p>
+    <% end %>
+  <% else %>
+    <p>No hay pruebas disponibles para este curso.</p>
+  <% end %>
+
+  <hr>
+
+  <h2>Reseñas del Curso</h2>
+  <% if @reviews.any? %>
+    <% @reviews.each do |review| %>
+      <p><strong><%= review.user.email %>:</strong> <%= review.content %> - <%= review.rating %> estrellas</p>
+    <% end %>
+  <% else %>
+    <p>No hay reseñas disponibles para este curso.</p>
+  <% end %>
+</div>
