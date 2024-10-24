@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_21_220805) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_23_154948) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,11 +70,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_21_220805) do
     t.string "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
   end
 
   create_table "courses_users", id: false, force: :cascade do |t|
     t.bigint "course_id", null: false
     t.bigint "user_id", null: false
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "course_id", null: false
+    t.string "status", default: "pendiente"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["user_id", "course_id"], name: "index_enrollments_on_user_id_and_course_id", unique: true
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
   create_table "materials", force: :cascade do |t|
@@ -162,6 +174,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_21_220805) do
     t.datetime "updated_at", null: false
     t.string "photo"
     t.text "description"
+    t.string "rol", default: "estudiante"
+    t.string "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -171,6 +185,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_21_220805) do
   add_foreign_key "chats", "courses"
   add_foreign_key "course_reviews", "courses"
   add_foreign_key "course_reviews", "students"
+  add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "users"
   add_foreign_key "materials", "courses"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "professors"

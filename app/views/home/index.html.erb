@@ -1,12 +1,20 @@
-<!-- app/views/home/index.html.erb -->
-<div class="home-content">
-  <h1>Bienvenido</h1>
+<h1 class="text-center">Cursos disponibles</h1>
 
-  <% if user_signed_in? %>
-    <p>¡Hola, <%= current_user.email %>!</p>
-    <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
-  <% else %>
-    <%= link_to 'Iniciar Sesión', new_user_session_path, class: "btn btn-secondary" %> |
-    <%= link_to 'Registrarse', new_user_registration_path, class: "btn btn-primary" %>
-  <% end %>
-</div>
+<% if user_signed_in? && current_user.rol == "profesor" %>
+  <div class="text-center mb-4">
+    <%= link_to "Crear nuevo curso", new_course_path, class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<% @courses.each do |course| %>
+  <div class="course-card">
+    <h3><%= course.title %></h3>
+    <p><%= course.description %></p>
+    <p>Vacantes disponibles: <%= course.total_slots - course.enrollments.where(status: 'aceptado').count %></p>
+    <%= link_to 'Ver más', course_path(course), class: "btn btn-info" %>
+    
+    <% if user_signed_in? && current_user.rol == 'estudiante' %>
+      <%= link_to 'Solicitar Inscripción', course_enrollments_path(course), method: :post, class: "btn btn-success" %>
+    <% end %>
+  </div>
+<% end %>
