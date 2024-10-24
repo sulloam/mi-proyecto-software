@@ -1,16 +1,7 @@
-<h2>Crear Nuevo Curso</h2>
+<h2>Editar <%= @course.title %></h2>
 
 <%= form_with(model: @course, local: true) do |form| %>
-  <% if @course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@course.errors.count, "error") %> prohíbe que el curso sea guardado:</h2>
-      <ul>
-        <% @course.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/error_messages', object: @course %>
 
   <div class="field">
     <%= form.label :title, "Título del curso" %>
@@ -43,6 +34,8 @@
   </div>
 
   <div class="actions">
-    <%= form.submit "Crear Curso", class: "btn btn-primary" %>
+    <%= form.submit "Actualizar Curso", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<%= link_to "Volver", course_path(@course), class: "btn btn-secondary" %>
