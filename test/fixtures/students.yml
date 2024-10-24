@@ -1,11 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  finished: MyString
-  course: one
-  user: one
+student_1: 
+  finished: falso
+  course: course_4
+  user: usuario_3
 
-two:
-  finished: MyString
-  course: two
-  user: two
+student_2: 
+  finished: falso
+  course: course_4
+  user: usuario_5
+
+student_3:
+  finished: falso
+  course: course_4
+  user: usuario_6

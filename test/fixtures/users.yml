@@ -3,9 +3,27 @@
 # This model initially had no columns defined. If you add columns to the
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+
+usuario_1:
+  email: ''
+  encrypted_password: 123345678
+
+usuario_2:
+  email: usuario2@ejemplo.cl
+  encrypted_password: ''
+
+usuario_3:
+  email: usuario3@ejemplo.cl
+  encrypted_password: contraseñausuario2
+
+usuario_4: 
+  email: profesor1@ejemplo.cl 
+  encrypted_password: elmejorprofe
+
+usuario_5:
+  email: usuario_5@ejemplo.cl
+  encrypted_password: elsegundoestudiante
+
+usuario_6:
+  email: usuario_6@ejemplo.cl
+  encrypted_password: eltercerestudiante

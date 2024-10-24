@@ -1,17 +1,29 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyText
-  mode: MyString
-  start_date: MyString
-  end_date: MyString
-  user: one
+course_1:
+  name: NULL
+  description: Guia basica de build orders para terrans.
+  mode: Asincronico
+  start_date: 25-10-2024
+  end_date: 25-11-2024
 
-two:
-  name: MyString
-  description: MyText
-  mode: MyString
-  start_date: MyString
-  end_date: MyString
-  user: two
+course_2:
+  name: Zerg Starcraft 
+  description: NULL 
+  mode: Asincronico 
+  start_date: 25-10-2024
+  end_date: 25-11-2024
+
+course_3: 
+  name: Protoss Starcraft
+  description: Guia basica de build orders para Protoss.
+  mode: NULL
+  start_date: 25-10-2024
+  end_date: 25-11-2024
+  
+course_4: 
+  name: Micromanagment Starcraft II
+  description: Guia basica de micromanagment para novatos en SC2
+  mode: Asincronico
+  start_date: 25-10-2024 
+  end_date: 25-11-2024
