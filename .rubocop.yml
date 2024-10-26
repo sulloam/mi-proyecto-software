@@ -22,7 +22,7 @@ AllCops:
 
 # Layout
 Layout/LineLength:
-  Max: 120
+  Max: 160
   Enabled: true
 Layout/AssignmentIndentation:
   Enabled: true
@@ -41,6 +41,8 @@ Layout/EmptyLinesAroundMethodBody:
   Enabled: true
 Layout/ArrayAlignment:
   Enabled: true
+Layout/EndOfLine:
+  Enabled: false
 
 # Naming
 Naming/ConstantName:
@@ -52,10 +54,12 @@ Naming/MethodName:
 Naming/AsciiIdentifiers:
   Enabled: true
 Naming/BlockParameterName:
-  Enabled: true
+  Enabled: false
   MinNameLength: 2
 Naming/VariableName:
-  Enabled: true
+  Enabled: false
+Naming/VariableNumber:
+  Enabled: false
 
 # Style 
 Style/Next:
@@ -76,6 +80,8 @@ Style/DoubleNegation:
   Enabled: true
 Style/EmptyElse:
   Enabled: true
+Style/Documentation:
+  Enabled: false
 
 # Lint
 Lint/AmbiguousAssignment:
