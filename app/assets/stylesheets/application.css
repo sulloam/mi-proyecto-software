@@ -170,3 +170,54 @@ footer {
 .btn-secondary:hover {
     filter: brightness(0.9);
 }
+
+/* Nuevos Estilos para la Página de Inicio */
+.intro-text {
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.why-choose-us {
+    background-color: #e9f7ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.why-choose-us h2 {
+    color: #007bff;
+}
+
+.why-choose-us ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.why-choose-us li {
+    margin: 5px 0;
+}
+
+/* Estilos para las fotos de los Profesores */
+.professor-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Ajuste para la Sección de Botones */
+.text-center .btn {
+    display: inline-block;
+    margin: 5px;
+}
+
+/* Estilos adicionales para el contenedor de botones */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}

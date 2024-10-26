@@ -1,0 +1,36 @@
+<h1 class="text-center">Listado de Profesores</h1>
+
+<div class="container">
+  <% if @professors.present? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Descripción</th>
+          <th>Foto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @professors.each do |professor| %>
+          <tr>
+            <td><%= professor.nombre_completo %></td> <!-- Directamente del modelo User -->
+            <td><%= professor.email %></td>
+            <td><%= professor.description %></td>
+            <td>
+              <% if professor.photo.attached? %>
+                <%= image_tag professor.photo, class: "professor-photo" %>
+              <% else %>
+                <span>No tiene foto</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No hay profesores registrados en este momento.</p>
+  <% end %>
+</div>
+
+<%= link_to 'Volver al inicio', root_path, class: 'btn btn-secondary' %>
