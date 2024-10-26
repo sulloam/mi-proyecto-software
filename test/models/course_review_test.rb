@@ -23,3 +23,4 @@ class CourseReviewTest < ActiveSupport::TestCase
   end
 
 end
+

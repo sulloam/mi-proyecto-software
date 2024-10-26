@@ -22,3 +22,4 @@ class ProfessorReviewTest < ActiveSupport::TestCase
   end
 
 end
+

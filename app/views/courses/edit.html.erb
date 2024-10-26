@@ -1,0 +1,41 @@
+<h2>Editar <%= @course.title %></h2>
+
+<%= form_with(model: @course, local: true) do |form| %>
+  <%= render 'shared/error_messages', object: @course %>
+
+  <div class="field">
+    <%= form.label :title, "Título del curso" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :code, "Código del curso" %>
+    <%= form.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, "Descripción" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date, "Fecha de inicio" %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date, "Fecha de término" %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_vacancies, "Vacantes totales" %>
+    <%= form.number_field :total_vacancies %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Actualizar Curso", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to "Volver", course_path(@course), class: "btn btn-secondary" %>

@@ -1,0 +1,31 @@
+<h2>Solicitudes de Inscripción</h2>
+
+<% if @enrollments.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Curso</th>
+        <th>Alumno</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @enrollments.each do |enrollment| %>
+        <tr>
+          <td><%= enrollment.course.title %></td>
+          <td><%= enrollment.user.email %></td>
+          <td><%= enrollment.status %></td>
+          <td>
+            <% if enrollment.pending? %>
+              <%= link_to "Aceptar", approve_enrollment_path(enrollment), method: :patch, class: "btn btn-success" %>
+              <%= link_to "Rechazar", reject_enrollment_path(enrollment), method: :patch, class: "btn btn-danger" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No hay solicitudes de inscripción pendientes.</p>
+<% end %>

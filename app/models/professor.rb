@@ -9,3 +9,4 @@ class Professor < ApplicationRecord
   has_many :professor_reviews
 
 end
+
