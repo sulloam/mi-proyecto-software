@@ -1,0 +1,12 @@
+<h1><%= @course.title %></h1>
+<p><strong>ID del curso:</strong> <%= @course.code %></p>
+<p><strong>Descripción:</strong> <%= @course.description %></p>
+<p><strong>Fecha de inicio:</strong> <%= @course.start_date %></p>
+<p><strong>Fecha de término:</strong> <%= @course.end_date %></p>
+<p><strong>Vacantes totales:</strong> <%= @course.total_vacancies %></p>
+<p><strong>Vacantes disponibles:</strong> <%= @course.available_slots %></p>
+
+<hr>
+
+<%= link_to 'Editar Curso', edit_course_path(@course), class: 'btn btn-primary' %>
+<%= link_to 'Volver a Inicio', root_path, class: 'btn btn-secondary' %>

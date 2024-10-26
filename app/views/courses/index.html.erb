@@ -1,0 +1,14 @@
+<h1 class="text-center">Cursos Disponibles</h1>
+
+<% @courses.each do |course| %>
+  <div class="course-card">
+    <h3><%= course.title %></h3>
+    <p><%= course.description %></p>
+    <p>Vacantes disponibles: <%= course.total_vacancies - course.enrollments.where(status: 'aceptado').count %></p>
+    <%= link_to 'Ver más', course_path(course), class: "btn btn-info" %>
+
+    <% if user_signed_in? && current_user.rol == 'estudiante' %>
+      <%= link_to 'Solicitar Inscripción', course_enrollments_path(course), method: :post, class: "btn btn-success" %>
+    <% end %>
+  </div>
+<% end %>

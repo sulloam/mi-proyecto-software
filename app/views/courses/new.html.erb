@@ -1,0 +1,48 @@
+<h2>Crear Nuevo Curso</h2>
+
+<%= form_with(model: @course, local: true) do |form| %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course.errors.count, "error") %> prohíbe que el curso sea guardado:</h2>
+      <ul>
+        <% @course.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title, "Título del curso" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :code, "Código del curso" %>
+    <%= form.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, "Descripción" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date, "Fecha de inicio" %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date, "Fecha de término" %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_vacancies, "Vacantes totales" %>
+    <%= form.number_field :total_vacancies %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Crear Curso", class: "btn btn-primary" %>
+  </div>
+<% end %>

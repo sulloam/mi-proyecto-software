@@ -1,10 +1,23 @@
-<!-- app/views/home/index.html.erb -->
-<h1>Welcome</h1>
+<h1 class="text-center">Bienvenido a Nuestra Plataforma de Cursos</h1>
 
-<% if user_signed_in? %>
-    <p>Welcome <%= current_user.email %></p>
-    <%= link_to 'Sign_out', destroy_user_session_path, method: :delete%>
-<% else %>
-    <%= link_to 'Sign in', new_user_session_path %> |
-    <%= link_to 'Sign up', new_user_registration_path %>
-<% end %>
+<div class="intro-text">
+  <p>Descubre y únete a cursos de alta calidad que impulsarán tu conocimiento y habilidades. Nuestra plataforma ofrece una variedad de cursos impartidos por profesores expertos en diferentes disciplinas. Aprende a tu propio ritmo y mejora tu vida profesional y personal.</p>
+</div>
+
+<div class="why-choose-us">
+  <h2>¿Por qué elegirnos?</h2>
+  <ul>
+    <li>Profesores calificados y expertos en sus campos.</li>
+    <li>Contenido actualizado y relevante para el mundo actual.</li>
+    <li>Acceso ilimitado y flexible para aprender a tu ritmo.</li>
+    <li>Soporte constante y comunidad activa de estudiantes.</li>
+  </ul>
+</div>
+
+<div class="text-center mb-4">
+  <%= link_to "Ver Cursos Disponibles", courses_path, class: "btn btn-primary" %>
+  <%= link_to "Ver Lista de Profesores", professors_path, class: "btn btn-info" %>
+  <% if user_signed_in? && current_user.rol == "profesor" %>
+    <%= link_to "Crear Nuevo Curso", new_course_path, class: "btn btn-success" %>
+  <% end %>
+</div>
