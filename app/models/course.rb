@@ -3,6 +3,8 @@ class Course < ApplicationRecord
   belongs_to :professor, class_name: 'User', foreign_key: 'professor_id'
 
   # Validaciones
+  validates :name, presence: true
+  validates :mode, presence: true
   validates :title, presence: true
   validates :description, presence: true
   validates :start_date, presence: true

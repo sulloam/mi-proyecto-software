@@ -1,13 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  description: MyText
-  course: one
-  student: one
+test_1: 
+  title: Fundamentos de las razas control 1 
+  description: En este control se evaluan los build orders basicos de las 3 razas presentes en el juego
+  course: course_4
+  student: student_1
 
-two:
-  title: MyString
-  description: MyText
-  course: two
-  student: two
+test_2:
+  title: NULL
+  description: En este control se evaluan los build orders basicos de las 3 razas presentes en el juego
+  course: course_4
+  student: student_2
+
+test_3:
+  title: Fundamentos de las razas control 1
+  description: NULL
+  course: course_4
+  student: student_3

@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :courses_as_student, through: :enrollments, source: :course
 
   # Validations
+  validates :email, presence: true
+  validates :encrypted_password, presence: true
   validates :rol, presence: true, inclusion: { in: %w[profesor estudiante], message: "%{value} no es un rol válido" }
   validates :phone_number, format: { with: /\A\+?\d{10,15}\z/, message: "número inválido (debe tener entre 10 y 15 dígitos)" }, allow_blank: true
 

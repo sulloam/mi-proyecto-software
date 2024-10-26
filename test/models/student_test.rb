@@ -1,9 +1,14 @@
 # frozen_string_literal: true
+# Tests de Estudiantes 
 
 require 'test_helper'
 
 class StudentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  
+  test "Registre de curso valido" do
+    @student = students(:student_1)
+    result = @student.save 
+    assert result
+  end
+  
 end
