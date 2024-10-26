@@ -1,20 +1,23 @@
-<h1 class="text-center">Cursos disponibles</h1>
+<h1 class="text-center">Bienvenido a Nuestra Plataforma de Cursos</h1>
 
-<% if user_signed_in? && current_user.rol == "profesor" %>
-  <div class="text-center mb-4">
-    <%= link_to "Crear nuevo curso", new_course_path, class: "btn btn-primary" %>
-  </div>
-<% end %>
+<div class="intro-text">
+  <p>Descubre y únete a cursos de alta calidad que impulsarán tu conocimiento y habilidades. Nuestra plataforma ofrece una variedad de cursos impartidos por profesores expertos en diferentes disciplinas. Aprende a tu propio ritmo y mejora tu vida profesional y personal.</p>
+</div>
 
-<% @courses.each do |course| %>
-  <div class="course-card">
-    <h3><%= course.title %></h3>
-    <p><%= course.description %></p>
-    <p>Vacantes disponibles: <%= course.total_vacancies - course.enrollments.where(status: 'aceptado').count %></p>
-    <%= link_to 'Ver más', course_path(course), class: "btn btn-info" %>
+<div class="why-choose-us">
+  <h2>¿Por qué elegirnos?</h2>
+  <ul>
+    <li>Profesores calificados y expertos en sus campos.</li>
+    <li>Contenido actualizado y relevante para el mundo actual.</li>
+    <li>Acceso ilimitado y flexible para aprender a tu ritmo.</li>
+    <li>Soporte constante y comunidad activa de estudiantes.</li>
+  </ul>
+</div>
 
-    <% if user_signed_in? && current_user.rol == 'estudiante' %>
-      <%= link_to 'Solicitar Inscripción', course_enrollments_path(course), method: :post, class: "btn btn-success" %>
-    <% end %>
-  </div>
-<% end %>
+<div class="text-center mb-4">
+  <%= link_to "Ver Cursos Disponibles", courses_path, class: "btn btn-primary" %>
+  <%= link_to "Ver Lista de Profesores", professors_path, class: "btn btn-info" %>
+  <% if user_signed_in? && current_user.rol == "profesor" %>
+    <%= link_to "Crear Nuevo Curso", new_course_path, class: "btn btn-success" %>
+  <% end %>
+</div>

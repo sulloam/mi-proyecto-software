@@ -44,6 +44,18 @@
   <div class="actions">
     <%= f.submit "Registrarse", class: "btn btn-primary" %>
   </div>
+
+  <div class="field">
+  <%= f.label :first_name, "Nombre" %>
+  <%= f.text_field :first_name, placeholder: "Tu nombre" %>
+</div>
+
+<div class="field">
+  <%= f.label :last_name, "Apellido" %>
+  <%= f.text_field :last_name, placeholder: "Tu apellido" %>
+</div>
+
 <% end %>
+
 
 <%= render "devise/shared/links" %>

@@ -24,4 +24,8 @@ Rails.application.routes.draw do
   resources :materials, only: [:destroy, :index] # Eliminar material y ver lista
   resources :tests, only: [:destroy, :index] # Eliminar pruebas y ver lista
   resources :course_reviews, only: [:index, :destroy] # Ver y eliminar reseñas
+
+  # Ruta para el listado de profesores
+  resources :professors, only: [:index]
+
 end

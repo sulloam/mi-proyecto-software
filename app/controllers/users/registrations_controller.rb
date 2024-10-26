@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
     # Permitir parámetros adicionales para la creación del usuario
     def configure_sign_up_params
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:rol, :phone_number])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:rol, :phone_number, :first_name, :last_name])
     end
   end
   
