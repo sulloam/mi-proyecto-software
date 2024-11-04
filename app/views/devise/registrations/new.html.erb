@@ -1,4 +1,4 @@
-<h2>Registrarse</h2>
+<h2>Registrarse</h2> 
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= f.label :photo %><br />
-    <%= f.file_field :photo %>
+    <%= f.file_field :photo, class: "btn btn-secondary" %>
   </div>
 
   <div class="field">
@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= f.label :rol, "Rol" %><br />
-    <%= f.select :rol, options_for_select([["Profesor", "profesor"], ["Estudiante", "estudiante"]]), prompt: "Selecciona tu rol" %>
+    <%= f.select :rol, options_for_select([["Profesor", "profesor"], ["Estudiante", "estudiante"]]), prompt: "Selecciona tu rol", class: "btn btn-secondary" %>
   </div>
 
   <div class="field">
@@ -41,21 +41,20 @@
     <%= f.text_field :phone_number, placeholder: "+56912345678" %>
   </div>
 
+  <div class="field">
+    <%= f.label :first_name, "Nombre" %>
+    <%= f.text_field :first_name, placeholder: "Tu nombre" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name, "Apellido" %>
+    <%= f.text_field :last_name, placeholder: "Tu apellido" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Registrarse", class: "btn btn-primary" %>
   </div>
 
-  <div class="field">
-  <%= f.label :first_name, "Nombre" %>
-  <%= f.text_field :first_name, placeholder: "Tu nombre" %>
-</div>
-
-<div class="field">
-  <%= f.label :last_name, "Apellido" %>
-  <%= f.text_field :last_name, placeholder: "Tu apellido" %>
-</div>
-
 <% end %>
-
 
 <%= render "devise/shared/links" %>
