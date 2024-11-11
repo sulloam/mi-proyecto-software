@@ -1,0 +1,34 @@
+<h2>Mis Solicitudes de Inscripción</h2>
+
+<h3>Pendientes</h3>
+<% if @pending_enrollments.any? %>
+  <ul>
+    <% @pending_enrollments.each do |enrollment| %>
+      <li><%= enrollment.course.title %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No tienes solicitudes de inscripción pendientes.</p>
+<% end %>
+
+<h3>Aceptadas</h3>
+<% if @accepted_enrollments.any? %>
+  <ul>
+    <% @accepted_enrollments.each do |enrollment| %>
+      <li><%= enrollment.course.title %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No tienes inscripciones aceptadas.</p>
+<% end %>
+
+<h3>Rechazadas</h3>
+<% if @rejected_enrollments.any? %>
+  <ul>
+    <% @rejected_enrollments.each do |enrollment| %>
+      <li><%= enrollment.course.title %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No tienes inscripciones rechazadas.</p>
+<% end %>

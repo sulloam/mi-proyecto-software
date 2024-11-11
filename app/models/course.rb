@@ -8,15 +8,11 @@ class Course < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :total_vacancies, numericality: { only_integer: true, greater_than: 0 }
-  validates :code, presence: true, uniqueness: true # Asegura que el código del curso sea único
+  validates :code, presence: true, uniqueness: true
 
   # Relaciones adicionales
   has_many :enrollments
   has_many :students, through: :enrollments, source: :user
-
-  has_many :materials
-  has_many :tests
-  has_many :course_reviews
 
   # Métodos adicionales para lógica del curso
   def available_slots

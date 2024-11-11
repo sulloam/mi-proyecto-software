@@ -3,6 +3,7 @@ class Enrollment < ApplicationRecord
   belongs_to :course
 
   validates :status, presence: true, inclusion: { in: %w[pendiente aceptado rechazado] }
+  validates :user_id, uniqueness: { scope: :course_id, message: 'ya tiene una solicitud para este curso' }
 
   # Método para cambiar el estado de inscripción
   def accept

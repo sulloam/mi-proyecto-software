@@ -8,7 +8,9 @@
     <%= link_to 'Ver más', course_path(course), class: "btn btn-info" %>
 
     <% if user_signed_in? && current_user.rol == 'estudiante' %>
-      <%= link_to 'Solicitar Inscripción', course_enrollments_path(course), method: :post, class: "btn btn-success" %>
+      <%= form_with url: course_enrollments_path(course), method: :post, local: true do %>
+        <%= submit_tag 'Solicitar Inscripción', class: "btn btn-success" %>
+      <% end %>
     <% end %>
   </div>
 <% end %>
