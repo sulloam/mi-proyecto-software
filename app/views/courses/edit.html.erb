@@ -39,3 +39,6 @@
 <% end %>
 
 <%= link_to "Volver", course_path(@course), class: "btn btn-secondary" %>
+
+<%# Botón para eliminar el curso %>
+<%= link_to "Eliminar Curso", course_path(@course), method: :delete, data: { confirm: "¿Estás seguro de que deseas eliminar este curso?" }, class: "btn btn-danger mt-3" %>

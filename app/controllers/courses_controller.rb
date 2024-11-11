@@ -1,8 +1,8 @@
 class CoursesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :my_courses]
-  before_action :require_professor, only: [:new, :create, :edit, :update, :my_courses]
-  before_action :set_course, only: [:show, :edit, :update]
-  before_action :authorize_professor, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :my_courses, :destroy]
+  before_action :require_professor, only: [:new, :create, :edit, :update, :my_courses, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_professor, only: [:edit, :update, :destroy]
 
   def index
     @courses = Course.all
@@ -38,6 +38,11 @@ class CoursesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @course.destroy
+    redirect_to my_courses_courses_path, notice: "Curso eliminado exitosamente."
   end
 
   private

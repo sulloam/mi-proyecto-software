@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     collection do
       get 'my_courses', to: 'courses#my_courses'
     end
-    resources :enrollments, only: [:create, :index] # Agregar :index para que course_enrollments_path funcione
+    resources :enrollments, only: [:create, :index]
   end
 
   # Rutas para las inscripciones independientes
@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   # Nueva ruta para ver cursos inscritos del usuario
   get 'users/courses', to: 'users#enrollments', as: 'user_courses'
 end
+
 
