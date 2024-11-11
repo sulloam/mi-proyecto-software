@@ -1,31 +1,33 @@
-<h2>Solicitudes de Inscripción</h2>
+<h2 class="text-center">Solicitudes de Inscripción</h2>
 
-<% if @enrollments.any? %>
-  <table>
-    <thead>
+<% if @pending_enrollments.any? %>
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
       <tr>
         <th>Curso</th>
         <th>Alumno</th>
-        <th>Estado</th>
-        <th>Acciones</th>
+        <th class="text-center">Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <% @enrollments.each do |enrollment| %>
+      <% @pending_enrollments.each do |enrollment| %>
         <tr>
           <td><%= enrollment.course.title %></td>
-          <td><%= enrollment.user.email %></td>
-          <td><%= enrollment.status %></td>
-          <td>
-            <% if enrollment.pending? %>
-              <%= link_to "Aceptar", approve_enrollment_path(enrollment), method: :patch, class: "btn btn-success" %>
-              <%= link_to "Rechazar", reject_enrollment_path(enrollment), method: :patch, class: "btn btn-danger" %>
-            <% end %>
+          <td><%= enrollment.user.nombre_completo %> (<%= enrollment.user.email %>)</td>
+          <td class="text-center">
+            <div class="btn-group" role="group">
+              <%= form_with url: enrollment_path(enrollment, decision: 'accept'), method: :patch, local: true do %>
+                <%= submit_tag 'Aceptar', class: "btn btn-success" %>
+              <% end %>
+              <%= form_with url: enrollment_path(enrollment, decision: 'reject'), method: :patch, local: true do %>
+                <%= submit_tag 'Rechazar', class: "btn btn-danger" %>
+              <% end %>
+            </div>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <p>No hay solicitudes de inscripción pendientes.</p>
+  <p class="text-center">No hay solicitudes de inscripción pendientes.</p>
 <% end %>

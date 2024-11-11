@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 class ProfessorsController < ApplicationController
   def index
-    @professors = User.where(rol: 'profesor') # Cambia a User directamente
+    @professors = User.where(rol: 'profesor') # Carga todos los usuarios con rol de profesor
   end
 end

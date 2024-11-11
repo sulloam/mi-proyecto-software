@@ -1,0 +1,18 @@
+<h1 class="text-center">Mis Cursos</h1>
+
+<div class="container">
+  <% if @courses.any? %>
+    <% @courses.each do |course| %>
+      <div class="course-card mb-4">
+        <h3><%= course.title %></h3>
+        <p><%= course.description %></p>
+        <p>Vacantes disponibles: <%= course.available_slots %></p>
+        <%= link_to 'Ver solicitudes de inscripción', course_enrollments_path(course), class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No tienes cursos creados.</p>
+  <% end %>
+</div>
+
+<%= link_to 'Volver a Inicio', root_path, class: 'btn btn-secondary' %>

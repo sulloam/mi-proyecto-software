@@ -1,7 +1,4 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
-  get 'home/index'
   devise_for :users, controllers: { registrations: 'users/registrations' }
   root 'home#index'
 
@@ -11,20 +8,22 @@ Rails.application.routes.draw do
 
   # Rutas para los cursos
   resources :courses do
-    resources :enrollments, only: [:create]
-    resources :materials, only: %i[create new] # Para subir material al curso
-    resources :tests, only: %i[create new] # Para subir pruebas al curso
-    resources :course_reviews, only: %i[index create] # Para ver y crear reseñas del curso
+    collection do
+      get 'my_courses', to: 'courses#my_courses'
+    end
+    resources :enrollments, only: [:create, :index] # Agregar :index para que course_enrollments_path funcione
   end
 
-  # Rutas para las inscripciones
-  resources :enrollments, only: %i[index update]
+  # Rutas para las inscripciones independientes
+  resources :enrollments, only: [:update]
 
-  # Rutas adicionales para manejar materiales, pruebas y reseñas
-  resources :materials, only: %i[destroy index] # Eliminar material y ver lista
-  resources :tests, only: %i[destroy index] # Eliminar pruebas y ver lista
-  resources :course_reviews, only: %i[index destroy] # Ver y eliminar reseñas
+  # Ruta para ver las inscripciones del usuario en su perfil
+  get 'users/enrollments', to: 'users#enrollments', as: 'user_enrollments'
 
   # Ruta para el listado de profesores
   resources :professors, only: [:index]
+
+  # Nueva ruta para ver cursos inscritos del usuario
+  get 'users/courses', to: 'users#enrollments', as: 'user_courses'
 end
+
