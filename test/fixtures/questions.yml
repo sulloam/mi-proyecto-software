@@ -1,15 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  statement: MyText
-  score: 1.5
-  obtained_score: 1.5
-  answer: MyText
-  test: one
+question_1:
+  statement: ¿Cual es el primer edifico constuido por un TERRAN siempre?
+  score: 3
+  obtained_score: NULL
+  answer: NULL
+  test: test_1
 
-two:
-  statement: MyText
-  score: 1.5
-  obtained_score: 1.5
-  answer: MyText
-  test: two
+question_2:
+  statement: NULL
+  score: 3
+  obtained_score: NULL
+  answer: NULL
+  test: test_1
+
+question_3:
+  statement: ¿Cual es el primer edifico constuido por un TERRAN siempre?
+  score: NULL
+  obtained_score: NULL
+  answer: NULL
+  test: test_1
+

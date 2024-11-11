@@ -1,13 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  score: 1
-  comment: MyText
-  student: one
-  professor: one
+professor_review_1:
+  score: 5
+  comment: Buen profesor, siempre dispuesto a enseñar, pregunta constantemente los contenidos, se asegura que el alumno entiende. 
+  student: student_1
+  professor: professor_1
 
-two:
-  score: 1
-  comment: MyText
-  student: two
-  professor: two
+professor_review_2:
+  score: NULL
+  comment: Mal curso, el profesor llegaba tarde, se perdia tiempo, no habia absolutamente nada de material subido.
+  student: student_2
+  professor: professor_1
+
+professor_review_3:
+  score: 4
+  comment: NULL
+  student: student_3
+  professor: professor_1
