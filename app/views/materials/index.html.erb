@@ -1,0 +1,27 @@
+<h1>Material del Curso: <%= @course.title %></h1>
+
+<% if @materials.any? %>
+  <ul>
+    <% @materials.each do |material| %>
+      <li>
+        <h3><%= material.title %></h3>
+        <iframe width="560" height="315" src="<%= material.embed_url %>" frameborder="0" allowfullscreen></iframe>
+        
+        <% if current_user == @course.professor %>
+          <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <%= link_to 'Editar', edit_course_material_path(@course, material), class: 'btn btn-secondary' %>
+            <%= form_with url: course_material_path(@course, material), method: :post, local: true do %>
+              <%= hidden_field_tag '_method', 'delete' %>
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              <%= submit_tag 'Eliminar', data: { confirm: '¿Estás seguro de que deseas eliminar este material?' }, class: 'btn btn-danger', style: 'height: 40px; line-height: 1.5;' %>
+            <% end %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No hay material subido para este curso aún.</p>
+<% end %>
+
+<%= link_to 'Volver al Curso', course_path(@course), class: 'btn btn-secondary' %>

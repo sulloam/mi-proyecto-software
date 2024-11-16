@@ -1,0 +1,20 @@
+<h2>Respuestas de Alumnos para <%= @evaluation.title %></h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Alumno</th>
+      <th>Puntaje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @student_responses.each do |response| %>
+      <tr>
+        <td><%= response.student.full_name %></td>
+        <td><%= response.score %>%</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Volver", manage_course_evaluations_path(@course), class: "btn btn-secondary" %>

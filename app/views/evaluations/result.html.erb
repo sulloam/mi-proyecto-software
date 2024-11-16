@@ -1,0 +1,18 @@
+<h2>Resultados de la Evaluación: <%= @evaluation.title %></h2>
+
+<p><strong>Respuestas correctas:</strong> <%= @correct_answers %> de <%= @total_questions %></p>
+
+<% @evaluation.evaluation_questions.each_with_index do |question, index| %>
+  <div class="question">
+    <p><strong>Pregunta <%= index + 1 %>: <%= question.content %></strong></p>
+    <% question.options.each_with_index do |option, i| %>
+      <p style="color: <%= option.id == question.correct_option ? 'green' : 'black' %>">
+        <%= i + 1 %>. <%= option.content %>
+      </p>
+    <% end %>
+    <p><strong>Tu respuesta:</strong> <%= params[:answers][question.id.to_s] %></p>
+  </div>
+  <hr>
+<% end %>
+
+<%= link_to "Volver a Cursos", course_path(@course), class: "btn btn-secondary" %>

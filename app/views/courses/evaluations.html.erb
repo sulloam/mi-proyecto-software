@@ -1,0 +1,22 @@
+<h2>Evaluaciones Disponibles para <%= @course.title %></h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @evaluations.each do |evaluation| %>
+      <tr>
+        <td><%= evaluation.title %></td>
+        <td>
+          <%= link_to 'Realizar Evaluación', take_course_evaluation_path(@course, evaluation), class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Volver al Curso', course_path(@course), class: 'btn btn-secondary' %>

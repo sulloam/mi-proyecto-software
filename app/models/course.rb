@@ -13,6 +13,8 @@ class Course < ApplicationRecord
   # Relaciones adicionales
   has_many :enrollments
   has_many :students, through: :enrollments, source: :user
+  has_many :evaluations, dependent: :destroy
+  has_many :materials, dependent: :destroy
 
   # Métodos adicionales para lógica del curso
   def available_slots
