@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_response: one
+  evaluation_question: one
+  option: one
+
+two:
+  student_response: two
+  evaluation_question: two
+  option: two

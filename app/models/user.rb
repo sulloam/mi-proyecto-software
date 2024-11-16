@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :phone_number, format: { with: /\A\+?\d{10,15}\z/, message: "número inválido (debe tener entre 10 y 15 dígitos)" }, allow_blank: true
 
   # Método para obtener el nombre completo
-  def nombre_completo
+  def full_name
     "#{first_name} #{last_name}"
   end
 end

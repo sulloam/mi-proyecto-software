@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do 
   devise_for :users, controllers: { registrations: 'users/registrations' }
   root 'home#index'
 
@@ -11,7 +11,34 @@ Rails.application.routes.draw do
     collection do
       get 'my_courses', to: 'courses#my_courses'
     end
+
+    member do
+      get 'evaluations', to: 'courses#evaluations' # Nueva ruta para listar evaluaciones disponibles para los alumnos
+    end
+
     resources :enrollments, only: [:create, :index]
+    
+    # Rutas para materiales dentro de cursos
+    resources :materials, only: [:index, :new, :create, :edit, :update, :destroy]
+
+    # Rutas para evaluaciones dentro de cursos
+    resources :evaluations do
+      member do
+        get 'take', to: 'evaluations#take'
+        post 'submit', to: 'evaluations#submit'
+        get 'student_responses', to: 'evaluations#student_responses' # Ruta para ver respuestas de alumnos
+      end
+
+      collection do
+        get 'manage', to: 'evaluations#manage' # Ruta para gestionar evaluaciones
+      end
+
+      # Rutas para preguntas dentro de evaluaciones
+      resources :evaluation_questions, only: [:create] do
+        # Rutas para opciones dentro de preguntas de evaluación
+        resources :options, only: [:create]
+      end
+    end
   end
 
   # Rutas para las inscripciones independientes
@@ -26,5 +53,3 @@ Rails.application.routes.draw do
   # Nueva ruta para ver cursos inscritos del usuario
   get 'users/courses', to: 'users#enrollments', as: 'user_courses'
 end
-
-

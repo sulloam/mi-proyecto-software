@@ -1,0 +1,11 @@
+<h2>Gestionar Evaluaciones</h2>
+
+<% @evaluations.each do |evaluation| %>
+  <div class="evaluation-card">
+    <h3><%= evaluation.title %></h3>
+    <%= link_to "Ver Respuestas de Alumnos", student_responses_course_evaluation_path(@course, evaluation), class: "btn btn-info" %>
+  </div>
+<% end %>
+
+<%= link_to "Nueva Evaluación", new_course_evaluation_path(@course), class: "btn btn-primary" %>
+<%= link_to "Volver", my_courses_courses_path, class: "btn btn-secondary" %>

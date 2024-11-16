@@ -1,0 +1,19 @@
+<h1>Subir Material</h1>
+
+<%= form_with(model: [@course, @material], local: true) do |form| %>
+  <div class="field">
+    <%= form.label :title, "Título del Material" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :embed_url, "Enlace de YouTube (embed)" %>
+    <%= form.text_field :embed_url, placeholder: "Ejemplo: https://www.youtube.com/embed/video_id" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Subir Material", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to 'Volver', my_courses_courses_path, class: "btn btn-secondary" %>

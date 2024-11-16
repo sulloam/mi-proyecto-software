@@ -1,11 +1,15 @@
-class CoursesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :my_courses, :destroy]
+class CoursesController < ApplicationController 
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :my_courses, :destroy, :evaluations]
   before_action :require_professor, only: [:new, :create, :edit, :update, :my_courses, :destroy]
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :evaluations]
   before_action :authorize_professor, only: [:edit, :update, :destroy]
 
   def index
-    @courses = Course.all
+    if params[:search].present?
+      @courses = Course.where('title ILIKE ?', "%#{params[:search]}%")
+    else
+      @courses = Course.all
+    end
   end
 
   def show
@@ -13,6 +17,10 @@ class CoursesController < ApplicationController
 
   def my_courses
     @courses = current_user.courses_as_professor
+  end
+
+  def evaluations
+    @evaluations = @course.evaluations # Obtener todas las evaluaciones asociadas al curso
   end
 
   def new

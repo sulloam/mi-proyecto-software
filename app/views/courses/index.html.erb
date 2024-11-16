@@ -1,16 +1,24 @@
-<h1 class="text-center">Cursos Disponibles</h1>
+<!-- app/views/courses/index.html.erb -->
+<h1>Cursos Disponibles</h1>
+
+<%= form_with(url: courses_path, method: :get, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :search, "Buscar Cursos por Nombre" %>
+    <%= form.text_field :search, placeholder: "Ingrese el nombre del curso" %>
+    <%= form.submit "Buscar", class: "btn btn-primary" %>
+  </div>
+<% end %>
 
 <% @courses.each do |course| %>
-  <div class="course-card">
-    <h3><%= course.title %></h3>
+  <div class="course-item">
+    <h2><%= course.title %></h2>
     <p><%= course.description %></p>
-    <p>Vacantes disponibles: <%= course.total_vacancies - course.enrollments.where(status: 'aceptado').count %></p>
-    <%= link_to 'Ver más', course_path(course), class: "btn btn-info" %>
-
-    <% if user_signed_in? && current_user.rol == 'estudiante' %>
-      <%= form_with url: course_enrollments_path(course), method: :post, local: true do %>
-        <%= submit_tag 'Solicitar Inscripción', class: "btn btn-success" %>
-      <% end %>
+    <p><strong>Vacantes disponibles:</strong> <%= course.available_slots %></p>
+    <%= link_to 'Ver más', course_path(course), class: 'btn btn-info' %>
+    
+    <!-- Cambiado a form_with para la inscripción -->
+    <%= form_with url: course_enrollments_path(course), method: :post, local: true do %>
+      <%= submit_tag 'Solicitar Inscripción', class: 'btn btn-success' %>
     <% end %>
   </div>
 <% end %>
