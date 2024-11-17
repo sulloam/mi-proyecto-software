@@ -13,7 +13,7 @@
       <% @pending_enrollments.each do |enrollment| %>
         <tr>
           <td><%= enrollment.course.title %></td>
-          <td><%= enrollment.user.nombre_completo %> (<%= enrollment.user.email %>)</td>
+          <td><%= enrollment.user.full_name %> (<%= enrollment.user.email %>)</td>
           <td class="text-center">
             <div class="btn-group" role="group">
               <%= form_with url: enrollment_path(enrollment, decision: 'accept'), method: :patch, local: true do %>

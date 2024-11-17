@@ -27,6 +27,14 @@
   <% else %>
     <p>Este profesor aún no tiene cursos registrados.</p>
   <% end %>
-</div>
 
-<%= link_to 'Volver al listado de profesores', professors_path, class: 'btn btn-secondary' %>
+  <% if user_signed_in? && current_user.rol == "estudiante" %>
+    <% enrolled_in_course = @courses.any? { |course| course.enrollments.exists?(user: current_user, status: 'aceptado') } %>
+    <% if enrolled_in_course %>
+      <%= link_to 'Dejar Reseña', new_professor_review_path(@professor), class: 'btn btn-success' %>
+    <% end %>
+  <% end %>
+
+  <%= link_to 'Ver Reseñas sobre Profesor', professor_reviews_path(@professor), class: 'btn btn-info' %>
+  <%= link_to 'Volver al listado de profesores', professors_path, class: 'btn btn-secondary' %>
+</div>

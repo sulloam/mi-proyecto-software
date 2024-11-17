@@ -1,3 +1,4 @@
+# Agregado solo lo necesario para manejar reseñas
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   root 'home#index'
@@ -6,8 +7,15 @@ Rails.application.routes.draw do
     get 'users/sign_out' => 'devise/sessions#destroy'
   end
 
+  # Ruta para ver cursos inscritos del usuario
+  get 'users/courses', to: 'users#courses', as: 'users_courses'
+
   # Rutas para los usuarios
-  resources :users, only: [:show] # Nueva ruta para mostrar el perfil del usuario
+  resources :users, only: [:show] do
+    collection do
+      post 'users/courses/:course_id', to: 'users#remove_course', as: 'remove_course'
+    end
+  end
 
   # Rutas para los cursos
   resources :courses do
@@ -16,11 +24,11 @@ Rails.application.routes.draw do
     end
 
     member do
-      get 'evaluations', to: 'courses#evaluations' # Nueva ruta para listar evaluaciones disponibles para los alumnos
+      get 'evaluations', to: 'courses#evaluations'
     end
 
-    resources :enrollments, only: [:create, :index]
-    
+    resources :enrollments, only: [:create, :index, :destroy]
+
     # Rutas para materiales dentro de cursos
     resources :materials, only: [:index, :new, :create, :edit, :update, :destroy]
 
@@ -29,32 +37,26 @@ Rails.application.routes.draw do
       member do
         get 'take', to: 'evaluations#take'
         post 'submit', to: 'evaluations#submit'
-        get 'student_responses', to: 'evaluations#student_responses' # Ruta para ver respuestas de alumnos
+        get 'student_responses', to: 'evaluations#student_responses'
       end
 
       collection do
-        get 'manage', to: 'evaluations#manage' # Ruta para gestionar evaluaciones
+        get 'manage', to: 'evaluations#manage'
       end
 
       # Rutas para preguntas dentro de evaluaciones
       resources :evaluation_questions, only: [:create] do
-        # Rutas para opciones dentro de preguntas de evaluación
         resources :options, only: [:create]
       end
     end
+
+    # Rutas para reseñas de cursos
+    resources :reviews, only: [:new, :create, :index, :edit, :update]
   end
 
-  # Rutas para las inscripciones independientes
-  resources :enrollments, only: [:update]
-
-  # Ruta para ver las inscripciones del usuario en su perfil
-  get 'users/enrollments', to: 'users#enrollments', as: 'user_enrollments'
-
   # Ruta para el listado de profesores
-  resources :professors, only: [:index, :show]
-
-
-  # Nueva ruta para ver cursos inscritos del usuario
-  get 'users/courses', to: 'users#enrollments', as: 'user_courses'
+  resources :professors, only: [:index, :show] do
+    # Rutas para reseñas de profesores
+    resources :reviews, only: [:new, :create, :index, :edit, :update]
+  end
 end
-

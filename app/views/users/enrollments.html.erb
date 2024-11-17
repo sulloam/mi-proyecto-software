@@ -4,7 +4,7 @@
 <% if @pending_enrollments.any? %>
   <ul>
     <% @pending_enrollments.each do |enrollment| %>
-      <li><%= link_to enrollment.course.title, course_path(enrollment.course) %></li>
+      <li><%= enrollment.course.title %></li>
     <% end %>
   </ul>
 <% else %>
@@ -15,7 +15,12 @@
 <% if @accepted_enrollments.any? %>
   <ul>
     <% @accepted_enrollments.each do |enrollment| %>
-      <li><%= link_to enrollment.course.title, course_path(enrollment.course) %></li>
+      <li>
+        <%= enrollment.course.title %>
+        <%= link_to 'Eliminar Curso', remove_course_path(course_id: enrollment.course.id),
+                    method: :delete, class: 'btn btn-danger btn-sm',
+                    data: { confirm: '¿Estás seguro de que deseas eliminar este curso?' } %>
+      </li>
     <% end %>
   </ul>
 <% else %>
@@ -26,7 +31,7 @@
 <% if @rejected_enrollments.any? %>
   <ul>
     <% @rejected_enrollments.each do |enrollment| %>
-      <li><%= link_to enrollment.course.title, course_path(enrollment.course) %></li>
+      <li><%= enrollment.course.title %></li>
     <% end %>
   </ul>
 <% else %>

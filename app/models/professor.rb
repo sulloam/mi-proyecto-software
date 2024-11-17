@@ -5,5 +5,5 @@ class Professor < ApplicationRecord
   belongs_to :user
 
   has_many :messages
-  has_many :professor_reviews
+  has_many :reviews, as: :reviewable, dependent: :destroy
 end
