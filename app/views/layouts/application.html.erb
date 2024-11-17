@@ -17,7 +17,8 @@
           <% if current_user.rol == "profesor" %>
             <li><%= link_to "Mis Cursos", my_courses_courses_path %></li>
           <% end %>
-          <li><%= link_to "Mi Perfil", edit_user_registration_path %></li>
+          <li><%= link_to "Mi Perfil", user_path(current_user), class: 'nav-link' %></li>
+          
           <li><%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Iniciar Sesión", new_user_session_path %></li>
