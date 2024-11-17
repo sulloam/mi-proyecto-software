@@ -6,5 +6,10 @@ class UsersController < ApplicationController
       @accepted_enrollments = current_user.enrollments.where(status: 'aceptado')
       @rejected_enrollments = current_user.enrollments.where(status: 'rechazado')
     end
+
+    def show
+      @user = User.find(params[:id]) # Encuentra el usuario según el ID de la ruta
+    end
+  
   end
   
