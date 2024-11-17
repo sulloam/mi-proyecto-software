@@ -1,0 +1,23 @@
+<h1>Reseñas de <%= @reviewable.is_a?(Course) ? 'Curso' : 'Profesor' %></h1>
+
+<% if @reviews.any? %>
+  <ul>
+    <% @reviews.each do |review| %>
+      <li>
+        <strong>Calificación:</strong> <%= review.rating %> estrellas<br>
+        <strong>Comentario:</strong> <%= review.comment %><br>
+        <strong>Por:</strong> <%= review.user.full_name %>
+        <% if review.user_id == current_user.id %>
+          <% if @reviewable.is_a?(Course) %>
+            <%= link_to "Editar Reseña", edit_course_review_path(@reviewable, review), class: "btn btn-warning btn-sm" %>
+          <% end %>
+          <% if @reviewable.is_a?(Professor) %>
+            <%= link_to "Editar Reseña", edit_professor_review_path(@reviewable, review), class: "btn btn-warning btn-sm" %>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No hay reseñas disponibles.</p>
+<% end %>

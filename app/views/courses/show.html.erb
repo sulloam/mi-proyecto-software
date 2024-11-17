@@ -23,10 +23,13 @@
     <p><em>Ya estás inscrito en este curso.</em></p>
     <%= link_to 'Evaluaciones', evaluations_course_path(@course), class: 'btn btn-info' %>
     <%= link_to 'Material', course_materials_path(@course), class: 'btn btn-primary' %>
+    <%= link_to 'Dejar una Reseña', new_course_review_path(@course), class: 'btn btn-success' %>
   <% end %>
 <% end %>
 
 <hr>
+
+<%= link_to 'Ver Reseñas', course_reviews_path(@course), class: 'btn btn-info' %>
 
 <% if current_user.rol == 'profesor' && @course.professor == current_user %>
   <%= link_to 'Editar Curso', edit_course_path(@course), class: 'btn btn-primary' %>
