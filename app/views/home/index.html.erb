@@ -20,4 +20,8 @@
   <% if user_signed_in? && current_user.rol == "profesor" %>
     <%= link_to "Crear Nuevo Curso", new_course_path, class: "btn btn-success" %>
   <% end %>
+  <% if user_signed_in? && current_user.rol == "estudiante" %>
+    <%= link_to "Ver Cursos Inscritos", users_courses_path, class: "btn btn-warning" %>
+  <% end %>
 </div>
+

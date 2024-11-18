@@ -1,0 +1,45 @@
+<h2><%= @evaluation.title %></h2>
+
+<h3>Preguntas</h3>
+<% if @evaluation.evaluation_questions.any? %>
+  <ul>
+    <% @evaluation.evaluation_questions.each do |question| %>
+      <li>
+        <%= question.content %>
+        <ul>
+          <% question.options.each do |option| %>
+            <li><%= option.content %></li>
+          <% end %>
+        </ul>
+
+        <h4>Añadir Opción</h4>
+        <%= form_with model: [question, question.options.new], local: true do |form| %>
+          <div class="field">
+            <%= form.label :content, "Contenido de la opción" %>
+            <%= form.text_field :content %>
+          </div>
+
+          <div class="actions">
+            <%= form.submit "Agregar Opción", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No hay preguntas en esta evaluación.</p>
+<% end %>
+
+<h3>Añadir Pregunta</h3>
+<%= form_with model: [@evaluation, @evaluation_question], local: true do |form| %>
+  <div class="field">
+    <%= form.label :content, "Contenido de la pregunta" %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Agregar Pregunta", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to "Volver a Mis Cursos", my_courses_courses_path, class: "btn btn-secondary" %>

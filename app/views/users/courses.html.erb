@@ -1,0 +1,44 @@
+<h1 class="text-center">Mis Cursos Inscritos</h1>
+
+<h2 class="text-center">Mis Solicitudes de Inscripción</h2>
+
+<h3>Pendientes</h3>
+<% if @pending_enrollments.any? %>
+  <ul>
+    <% @pending_enrollments.each do |enrollment| %>
+      <li><%= enrollment.course.title %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No tienes solicitudes de inscripción pendientes.</p>
+<% end %>
+
+<h3>Aceptadas</h3>
+<% if @accepted_enrollments.any? %>
+  <ul>
+    <% @accepted_enrollments.each do |enrollment| %>
+      <li>
+        <%= link_to enrollment.course.title, course_path(enrollment.course), class: 'course-link' %>
+        <%= form_with url: remove_course_users_path(course_id: enrollment.course.id), method: :post, local: true do |form| %>
+          <%= form.submit 'Eliminar Curso', class: 'btn btn-danger btn-sm',
+                          data: { confirm: '¿Estás seguro de que deseas eliminar este curso?' } %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No tienes inscripciones aceptadas.</p>
+<% end %>
+
+<h3>Rechazadas</h3>
+<% if @rejected_enrollments.any? %>
+  <ul>
+    <% @rejected_enrollments.each do |enrollment| %>
+      <li><%= enrollment.course.title %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No tienes inscripciones rechazadas.</p>
+<% end %>
+
+<%= link_to 'Volver al inicio', root_path, class: 'btn btn-secondary' %>

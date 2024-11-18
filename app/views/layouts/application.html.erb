@@ -6,7 +6,7 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
   <header>
@@ -14,7 +14,11 @@
       <ul>
         <li><%= link_to "Inicio", root_path %></li>
         <% if user_signed_in? %>
-          <li><%= link_to "Mi Perfil", edit_user_registration_path %></li>
+          <% if current_user.rol == "profesor" %>
+            <li><%= link_to "Mis Cursos", my_courses_courses_path %></li>
+          <% end %>
+          <li><%= link_to "Mi Perfil", user_path(current_user), class: 'nav-link' %></li>
+          
           <li><%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Iniciar Sesión", new_user_session_path %></li>

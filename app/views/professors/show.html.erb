@@ -1,0 +1,40 @@
+<h1 class="text-center">Perfil del Profesor</h1>
+
+<div class="container">
+  <h2 class="text-center text-primary"><%= @professor.full_name %></h2>
+  <p><strong>Email:</strong> <%= @professor.email %></p>
+  <p><strong>Descripción:</strong> <%= @professor.description %></p>
+  
+  <p><strong>Foto de Perfil:</strong></p>
+  <% if @professor.photo.attached? %>
+    <%= image_tag @professor.photo, class: "professor-photo", size: "200x200" %>
+  <% else %>
+    <span>No tiene foto</span>
+  <% end %>
+
+  <hr>
+
+  <h3>Cursos Impartidos</h3>
+  <% if @courses.any? %>
+    <ul>
+      <% @courses.each do |course| %>
+        <li>
+          <strong><%= link_to course.title, course_path(course) %></strong>
+          - <%= course.description %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Este profesor aún no tiene cursos registrados.</p>
+  <% end %>
+
+  <% if user_signed_in? && current_user.rol == "estudiante" %>
+    <% enrolled_in_course = @courses.any? { |course| course.enrollments.exists?(user: current_user, status: 'aceptado') } %>
+    <% if enrolled_in_course %>
+      <%= link_to 'Dejar Reseña', new_professor_review_path(@professor), class: 'btn btn-success' %>
+    <% end %>
+  <% end %>
+
+  <%= link_to 'Ver Reseñas sobre Profesor', professor_reviews_path(@professor), class: 'btn btn-info' %>
+  <%= link_to 'Volver al listado de profesores', professors_path, class: 'btn btn-secondary' %>
+</div>

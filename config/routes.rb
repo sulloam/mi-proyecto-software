@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
+# Agregado solo lo necesario para manejar reseñas
 Rails.application.routes.draw do
-  get 'home/index'
   devise_for :users, controllers: { registrations: 'users/registrations' }
   root 'home#index'
 
@@ -9,22 +7,56 @@ Rails.application.routes.draw do
     get 'users/sign_out' => 'devise/sessions#destroy'
   end
 
-  # Rutas para los cursos
-  resources :courses do
-    resources :enrollments, only: [:create]
-    resources :materials, only: %i[create new] # Para subir material al curso
-    resources :tests, only: %i[create new] # Para subir pruebas al curso
-    resources :course_reviews, only: %i[index create] # Para ver y crear reseñas del curso
+  # Ruta para ver cursos inscritos del usuario
+  get 'users/courses', to: 'users#courses', as: 'users_courses'
+
+  # Rutas para los usuarios
+  resources :users, only: [:show] do
+    collection do
+      post 'users/courses/:course_id', to: 'users#remove_course', as: 'remove_course'
+    end
   end
 
-  # Rutas para las inscripciones
-  resources :enrollments, only: %i[index update]
+  # Rutas para los cursos
+  resources :courses do
+    collection do
+      get 'my_courses', to: 'courses#my_courses'
+    end
 
-  # Rutas adicionales para manejar materiales, pruebas y reseñas
-  resources :materials, only: %i[destroy index] # Eliminar material y ver lista
-  resources :tests, only: %i[destroy index] # Eliminar pruebas y ver lista
-  resources :course_reviews, only: %i[index destroy] # Ver y eliminar reseñas
+    member do
+      get 'evaluations', to: 'courses#evaluations'
+    end
+
+    resources :enrollments, only: [:create, :index, :destroy]
+
+    # Rutas para materiales dentro de cursos
+    resources :materials, only: [:index, :new, :create, :edit, :update, :destroy]
+
+    # Rutas para evaluaciones dentro de cursos
+    resources :evaluations do
+      member do
+        get 'take', to: 'evaluations#take'
+        post 'submit', to: 'evaluations#submit'
+        get 'student_responses', to: 'evaluations#student_responses'
+      end
+
+      collection do
+        get 'manage', to: 'evaluations#manage'
+      end
+
+      # Rutas para preguntas dentro de evaluaciones
+      resources :evaluation_questions, only: [:create] do
+        resources :options, only: [:create]
+      end
+    end
+
+    # Rutas para reseñas de cursos
+    resources :reviews, only: [:new, :create, :index, :edit, :update]
+  end
 
   # Ruta para el listado de profesores
-  resources :professors, only: [:index]
+  resources :professors, only: [:index, :show] do
+    # Rutas para reseñas de profesores
+    resources :reviews, only: [:new, :create, :index, :edit, :update]
+  end
 end

@@ -6,7 +6,34 @@
 <p><strong>Vacantes totales:</strong> <%= @course.total_vacancies %></p>
 <p><strong>Vacantes disponibles:</strong> <%= @course.available_slots %></p>
 
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<% if current_user.rol == 'estudiante' %>
+  <% enrollment = @course.enrollments.find_by(user: current_user) %>
+  <% if enrollment.nil? %>
+    <%= form_with url: course_enrollments_path(@course), local: true, method: :post do %>
+      <%= hidden_field_tag :course_id, @course.id %>
+      <%= submit_tag 'Solicitar Inscripción', class: 'btn btn-primary' %>
+    <% end %>
+  <% elsif enrollment.status == 'pendiente' %>
+    <p><em>Solicitud de inscripción pendiente.</em></p>
+  <% elsif enrollment.status == 'aceptado' %>
+    <p><em>Ya estás inscrito en este curso.</em></p>
+    <%= link_to 'Evaluaciones', evaluations_course_path(@course), class: 'btn btn-info' %>
+    <%= link_to 'Material', course_materials_path(@course), class: 'btn btn-primary' %>
+    <%= link_to 'Dejar una Reseña', new_course_review_path(@course), class: 'btn btn-success' %>
+  <% end %>
+<% end %>
+
 <hr>
 
-<%= link_to 'Editar Curso', edit_course_path(@course), class: 'btn btn-primary' %>
+<%= link_to 'Ver Reseñas', course_reviews_path(@course), class: 'btn btn-info' %>
+
+<% if current_user.rol == 'profesor' && @course.professor == current_user %>
+  <%= link_to 'Editar Curso', edit_course_path(@course), class: 'btn btn-primary' %>
+  <%= link_to 'Subir Material', new_course_material_path(@course), class: 'btn btn-secondary' %>
+<% end %>
+
 <%= link_to 'Volver a Inicio', root_path, class: 'btn btn-secondary' %>

@@ -9,20 +9,24 @@
           <th>Email</th>
           <th>Descripción</th>
           <th>Foto</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <% @professors.each do |professor| %>
           <tr>
-            <td><%= professor.nombre_completo %></td> <!-- Directamente del modelo User -->
+            <td><%= professor.full_name %></td>
             <td><%= professor.email %></td>
             <td><%= professor.description %></td>
             <td>
               <% if professor.photo.attached? %>
-                <%= image_tag professor.photo, class: "professor-photo" %>
+                <%= image_tag professor.photo, class: "professor-photo", size: "100x100" %>
               <% else %>
                 <span>No tiene foto</span>
               <% end %>
+            </td>
+            <td>
+              <%= link_to "Ver Perfil", professor_path(professor), class: "btn btn-primary" %>
             </td>
           </tr>
         <% end %>

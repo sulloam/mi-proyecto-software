@@ -1,0 +1,20 @@
+<h2>Realizar Evaluación: <%= @evaluation.title %></h2>
+
+<%= form_with url: submit_course_evaluation_path(@course, @evaluation), method: :post, local: true do |f| %>
+  <% @evaluation.evaluation_questions.each do |question| %>
+    <div class="question">
+      <p><strong>Pregunta <%= question.id %>: <%= question.content %></strong></p>
+      <% question.options.each do |option| %>
+        <div class="option">
+          <%= radio_button_tag "answers[#{question.id}]", option.id, false, id: "question_#{question.id}_option_#{option.id}" %>
+          <%= label_tag "question_#{question.id}_option_#{option.id}", option.content %>
+        </div>
+      <% end %>
+    </div>
+    <hr>
+  <% end %>
+
+  <%= f.submit "Enviar Respuestas", class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to "Volver", course_path(@course), class: "btn btn-secondary" %>

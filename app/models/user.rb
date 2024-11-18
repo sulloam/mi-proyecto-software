@@ -1,28 +1,23 @@
-# frozen_string_literal: true
-
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   has_and_belongs_to_many :courses
-  has_many :professors
-  has_many :students
-  has_one_attached :photo
-
-  # Relaciones nuevas
-  has_many :enrollments
+  has_many :enrollments, dependent: :destroy
   has_many :courses_as_professor, class_name: 'Course', foreign_key: 'professor_id'
   has_many :courses_as_student, through: :enrollments, source: :course
+  has_many :reviews, as: :reviewable, dependent: :destroy # Relación polimórfica
 
-  # Validations
-  validates :email, presence: true
-  validates :encrypted_password, presence: true
-  validates :rol, presence: true, inclusion: { in: %w[profesor estudiante], message: '%<value>s no es un rol válido' }
-  validates :phone_number,
-            format: { with: /\A\+?\d{10,15}\z/, message: 'número inválido (debe tener entre 10 y 15 dígitos)' }, allow_blank: true
+  # Se asegura de que Active Storage esté disponible
+  has_one_attached :photo
+
+  # Validaciones
+  validates :rol, presence: true, inclusion: { in: %w[profesor estudiante], message: "%{value} no es un rol válido" }
+  validates :phone_number, format: { with: /\A\+?\d{10,15}\z/, message: "número inválido (debe tener entre 10 y 15 dígitos)" }, allow_blank: true
 
   # Método para obtener el nombre completo
-  def nombre_completo
+  def full_name
     "#{first_name} #{last_name}"
   end
 end
+

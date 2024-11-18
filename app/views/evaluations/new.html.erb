@@ -1,0 +1,42 @@
+<h2>Nueva Evaluación</h2>
+
+<%= form_with(model: [@course, @evaluation], local: true) do |f| %>
+  <div class="field">
+    <%= f.label :title, "Título de la Evaluación" %>
+    <%= f.text_field :title, class: "form-control", required: true %>
+  </div>
+
+  <h3>Preguntas</h3>
+  
+  <%= f.fields_for :evaluation_questions do |q| %>
+    <div class="question-fields">
+      <div class="field">
+        <%= q.label :content, "Pregunta" %>
+        <%= q.text_field :content, class: "form-control", required: true %>
+      </div>
+
+      <h4>Opciones</h4>
+      
+      <%= q.fields_for :options do |o| %>
+        <div class="option-fields">
+          <div class="field">
+            <%= o.label :content, "Opción" %>
+            <%= o.text_field :content, class: "form-control", required: true %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= q.label :correct_option, "Respuesta Correcta (Escribe el texto de la opción correcta)" %>
+        <%= q.text_field :correct_option, class: "form-control", required: true %>
+        <small class="text-muted">Asegúrate de que la respuesta coincida exactamente con una de las opciones.</small>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Crear Evaluación", class: "btn btn-primary" %>
+    <%= link_to "Volver", course_path(@course), class: "btn btn-secondary" %>
+  </div>
+<% end %>

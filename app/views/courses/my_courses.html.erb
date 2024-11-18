@@ -1,0 +1,25 @@
+<h1 class="text-center">Mis Cursos</h1>
+
+<div class="container">
+  <% if @courses.any? %>
+    <% @courses.each do |course| %>
+      <div class="course-card mb-4">
+        <h3><%= course.title %></h3>
+        <p><%= course.description %></p>
+        <p>Vacantes disponibles: <%= course.available_slots %></p>
+
+        <%= link_to 'Ver solicitudes de inscripción', course_enrollments_path(course), class: 'btn btn-primary' %>
+        <%= link_to 'Crear Evaluación', new_course_evaluation_path(course), class: 'btn btn-secondary' %>
+        <%= link_to 'Subir Material', new_course_material_path(course), class: 'btn btn-info' %>
+        <%= link_to 'Gestionar Materiales', course_materials_path(course), class: 'btn btn-warning' %>
+        <%= link_to "Ver Respuestas de Alumnos", student_responses_course_evaluation_path(course, course.evaluations.first), class: "btn btn-warning" if course.evaluations.any? %>
+        <%= link_to 'Gestionar Evaluaciones', manage_course_evaluations_path(course), class: 'btn btn-warning' %>
+
+      </div>
+    <% end %>
+  <% else %>
+    <p>No tienes cursos creados.</p>
+  <% end %>
+</div>
+
+<%= link_to 'Volver a Inicio', root_path, class: 'btn btn-secondary' %>
