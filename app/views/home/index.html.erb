@@ -1,27 +1,40 @@
-<h1 class="text-center">Bienvenido a Nuestra Plataforma de Cursos</h1>
+<h1 class="text-center text-primary">Bienvenido a Linguas UC</h1>
 
-<div class="intro-text">
-  <p>Descubre y únete a cursos de alta calidad que impulsarán tu conocimiento y habilidades. Nuestra plataforma ofrece una variedad de cursos impartidos por profesores expertos en diferentes disciplinas. Aprende a tu propio ritmo y mejora tu vida profesional y personal.</p>
+<p class="text-center">
+  Sumérgete en un mundo de idiomas y culturas con <strong>Linguas UC</strong>, la plataforma de aprendizaje de idiomas de excelencia. Aprende, conecta y amplía tus horizontes con cursos diseñados por expertos lingüísticos de la Universidad Católica.
+</p>
+
+<div class="text-center">
+  <h2 class="text-info">¿Por qué elegirnos?</h2>
+  <div class="alert alert-light">
+    <ul>
+      <li>Profesores nativos y especializados en la enseñanza de idiomas.</li>
+      <li>Acceso a materiales interactivos como videos y podcasts.</li>
+      <li>Enfoque cultural que te permite explorar tradiciones y costumbres mientras aprendes.</li>
+      <li>Flexibilidad para estudiar en cualquier momento y desde cualquier lugar.</li>
+    </ul>
+  </div>
 </div>
 
-<div class="why-choose-us">
-  <h2>¿Por qué elegirnos?</h2>
-  <ul>
-    <li>Profesores calificados y expertos en sus campos.</li>
-    <li>Contenido actualizado y relevante para el mundo actual.</li>
-    <li>Acceso ilimitado y flexible para aprender a tu ritmo.</li>
-    <li>Soporte constante y comunidad activa de estudiantes.</li>
-  </ul>
+<div class="text-center mt-4">
+  <%= link_to 'Explorar Cursos de Idiomas', courses_path, class: 'btn btn-primary' %>
+  <%= link_to 'Conocer a Nuestros Profesores Nativos', professors_path, class: 'btn btn-info' %>
+  <%= link_to 'Mis Cursos de Idiomas', users_courses_path, class: 'btn btn-success' %>
 </div>
 
-<div class="text-center mb-4">
-  <%= link_to "Ver Cursos Disponibles", courses_path, class: "btn btn-primary" %>
-  <%= link_to "Ver Lista de Profesores", professors_path, class: "btn btn-info" %>
-  <% if user_signed_in? && current_user.rol == "profesor" %>
-    <%= link_to "Crear Nuevo Curso", new_course_path, class: "btn btn-success" %>
-  <% end %>
-  <% if user_signed_in? && current_user.rol == "estudiante" %>
-    <%= link_to "Ver Cursos Inscritos", users_courses_path, class: "btn btn-warning" %>
-  <% end %>
-</div>
+<hr>
 
+<div class="row text-center mt-5">
+  <div class="col-md-4">
+    <%= image_tag 'flags.jpg', alt: 'Banderas del mundo', class: 'img-fluid' %>
+    <p>Banderas de todo el mundo representando nuestros cursos.</p>
+  </div>
+  <div class="col-md-4">
+    <%= image_tag 'globe.jpg', alt: 'Globo terráqueo', class: 'img-fluid' %>
+    <p>Conecta globalmente con idiomas y culturas.</p>
+  </div>
+  <div class="col-md-4">
+    <%= image_tag 'dictionary.jpg', alt: 'Diccionario', class: 'img-fluid' %>
+    <p>Accede a recursos exclusivos.</p>
+  </div>
+</div>

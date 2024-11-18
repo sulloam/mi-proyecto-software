@@ -1,19 +1,13 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+review_1:
+  id: 1
+  reviewable_id: 1015251335
+  reviewable_type: "Course"
+  content: "Excelente curso, muy bien explicado."
+  rating: 5
 
-course_review_1:
-  score: 5
-  comment: Disfrute mucho del curso, bien estructurado, buen material. En particular los ejercicios me ayudaron bastante a mejorar mi rendimiento. 
-  student: student_1
-  course: course_4
-
-course_review_2:
-  score: NULL
-  comment: Mal curso, no entendi nada de lo que se me decia, definitivamente no es un curso introductorio.
-  student: student_2
-  course: course_4
-
-course_review_3:
-  score: 4
-  comment: NULL
-  student: student_3
-  course: course_4
+review_2:
+  id: 2
+  reviewable_id: 1015251336
+  reviewable_type: "Course"
+  content: "Curso aceptable, pero faltaron ejemplos prácticos."
+  rating: 3
