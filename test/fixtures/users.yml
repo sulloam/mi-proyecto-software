@@ -1,35 +1,46 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
+# test/fixtures/users.yml
 
 usuario_1:
-  email: ''
-  encrypted_password: 123345678
+  email: usuario1@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %> # Contraseña "password123"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  created_at: <%= Time.now - 1.day %>
+  updated_at: <%= Time.now - 1.day %>
+  photo: null
+  description: "Primer usuario de prueba"
   rol: estudiante
+  phone_number: "+12345678901"
+  first_name: "Juan"
+  last_name: "Pérez"
 
 usuario_2:
-  email: usuario2@ejemplo.cl
-  encrypted_password: ''
-  rol: estudiante
+  email: usuario2@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password456') %> # Contraseña "password456"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  created_at: <%= Time.now - 2.days %>
+  updated_at: <%= Time.now - 2.days %>
+  photo: null
+  description: "Segundo usuario de prueba"
+  rol: profesor
+  phone_number: "+98765432109"
+  first_name: "Ana"
+  last_name: "García"
 
 usuario_3:
-  email: usuario3@ejemplo.cl
-  encrypted_password: contraseñausuario2
+  email: usuario3@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password789') %> # Contraseña "password789"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  created_at: <%= Time.now - 3.days %>
+  updated_at: <%= Time.now - 3.days %>
+  photo: null
+  description: "Tercer usuario de prueba"
   rol: estudiante
-
-usuario_4: 
-  email: profesor1@ejemplo.cl 
-  encrypted_password: elmejorprofe
-  rol: profesor
-
-usuario_5:
-  email: usuario_5@ejemplo.cl
-  encrypted_password: elsegundoestudiante
-  rol: estudiante
-
-usuario_6:
-  email: usuario_6@ejemplo.cl
-  encrypted_password: eltercerestudiante
-  rol: estudiante
+  phone_number: null
+  first_name: "Luis"
+  last_name: "Fernández"
