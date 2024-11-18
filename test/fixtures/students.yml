@@ -1,17 +1,4 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-student_1: 
-  finished: falso
-  course: course_4
-  user: usuario_3
-
-student_2: 
-  finished: falso
-  course: course_4
-  user: usuario_5
-
-student_3:
-  finished: falso
-  course: course_4
-  user: usuario_6
-
+student_1:
+  user: valid_user
+  course: valid_course
+  finished: false

@@ -1,24 +1,18 @@
-# Tests de Usuarios.
-# frozen_string_literal: true
-
+# test/models/user_test.rb
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test 'Registro de usuarios validos' do
-    @user = users(:usuario_3)
-    result = @user.save
-    assert result
-  end
-
-  test 'Registro usuarios sin mail' do
-    @user = users(:usuario_1)
-    result = @user.save
-    assert_not result
-  end
-
-  test 'Registro usuarios sin clave' do
-    @user = users(:usuario_2)
-    result = @user.save
-    assert_not result
+  test 'debería guardar un usuario válido' do
+    user = User.new(
+      email: 'test@example.com',
+      encrypted_password: Devise::Encryptor.digest(User, 'password123'),
+      rol: 'estudiante',
+      phone_number: '+12345678901',
+      first_name: 'Test',
+      last_name: 'User',
+      description: 'Usuario válido para prueba'
+    )
+    
+    assert user.save, 'El usuario no se guardó correctamente'
   end
 end

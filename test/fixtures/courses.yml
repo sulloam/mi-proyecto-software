@@ -1,29 +1,19 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+curso_1:
+  id: 1015251335
+  title: "Curso de Matemáticas"
+  description: "Introducción a las matemáticas avanzadas."
+  start_date: "2024-01-01"
+  end_date: "2024-06-01"
+  total_vacancies: 30
+  code: "MAT101"
+  professor_id: 1
 
-course_1:
-  name: NULL
-  description: Guia basica de build orders para terrans.
-  mode: Asincronico
-  start_date: 25-10-2024
-  end_date: 25-11-2024
-
-course_2:
-  name: Zerg Starcraft 
-  description: NULL 
-  mode: Asincronico 
-  start_date: 25-10-2024
-  end_date: 25-11-2024
-
-course_3: 
-  name: Protoss Starcraft
-  description: Guia basica de build orders para Protoss.
-  mode: NULL
-  start_date: 25-10-2024
-  end_date: 25-11-2024
-  
-course_4: 
-  name: Micromanagment Starcraft II
-  description: Guia basica de micromanagment para novatos en SC2
-  mode: Asincronico
-  start_date: 25-10-2024 
-  end_date: 25-11-2024
+curso_2:
+  id: 1015251336
+  title: "Curso de Física"
+  description: "Curso básico de física clásica."
+  start_date: "2024-02-01"
+  end_date: "2024-07-01"
+  total_vacancies: 25
+  code: "FIS101"
+  professor_id: 1

@@ -1,7 +1,4 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 professor_1:
+  user: user_2
+  course: course_1
   grado: Master
-  course: course_4
-  user: usuario_4
-
