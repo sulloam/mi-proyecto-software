@@ -1,4 +1,4 @@
-<h1 class="text-center text-primary">Bienvenido a Linguas UC</h1>
+<h1 class="text-center text-primary">Bienvenido a Linguas UC</h1> 
 
 <p class="text-center">
   Sumérgete en un mundo de idiomas y culturas con <strong>Linguas UC</strong>, la plataforma de aprendizaje de idiomas de excelencia. Aprende, conecta y amplía tus horizontes con cursos diseñados por expertos lingüísticos de la Universidad Católica.
@@ -20,6 +20,10 @@
   <%= link_to 'Explorar Cursos de Idiomas', courses_path, class: 'btn btn-primary' %>
   <%= link_to 'Conocer a Nuestros Profesores Nativos', professors_path, class: 'btn btn-info' %>
   <%= link_to 'Mis Cursos de Idiomas', users_courses_path, class: 'btn btn-success' %>
+
+  <% if current_user&.rol == 'profesor' %>
+    <%= link_to 'Crear Curso', new_course_path, class: 'btn btn-warning mt-3' %>
+  <% end %>
 </div>
 
 <hr>
